@@ -45,7 +45,7 @@ const [isLoading, setIsLoading] = useState(false)
 
     return(
         <div>
-            <form onSubmit = {() =>login}>
+            <form onSubmit = {login}>
                 <input
                 type = 'text'
                 name = 'username'                
