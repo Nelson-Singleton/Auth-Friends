@@ -9,7 +9,7 @@ const LoginForm = () => {
 const handleChange = e => {
     setCreds({
         credentials:
-            {...creds,
+            {...creds.credentials,
             [e.target.name]: e.target.value
     }
     })
@@ -29,6 +29,7 @@ const [creds, setCreds] = useState({
     credentials: {username: "", password: ""}
 })
 const [isLoading, setIsLoading] = useState(false)
+
 
     return(
         <div>
