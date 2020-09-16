@@ -1,14 +1,13 @@
-import { Router } from 'express';
 import React from 'react';
 import './App.css';
 
-import {Switch, Route} from 'react-router-dom'
+import {Switch, Route, Link} from 'react-router-dom'
 
 import LoginForm from './Components/login'
 
 function App() {
   return (
-    <Router>
+    // <Router>
       <div className="App">
         <Switch>
           <Route path = '/login' component = {LoginForm} />
@@ -16,7 +15,7 @@ function App() {
 
       
     </div>
-    </Router>
+    //</Router>
   );
 }
 

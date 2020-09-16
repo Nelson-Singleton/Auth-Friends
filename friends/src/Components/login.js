@@ -2,13 +2,9 @@ import Axios from "axios"
 import React, { useState } from "react"
 import axiosWithAuth from '../Utils/axiosWithAuth'
 
-//states
-const [creds, setCreds] = useState({
-    credentials: {username: "", password: ""}
-})
-const [isLoading, setIsLoading] = useState(false)
+const LoginForm = () => {
 
-//functions
+    //functions
 const handleChange = e => {
     setCreds({
         credentials:
@@ -25,10 +21,14 @@ const login = e => {
             localStorage.setItem('token', res.data.token) //.payload
             //history.push('/protected')
         })
-
 }
+   
+    //states
+const [creds, setCreds] = useState({
+    credentials: {username: "", password: ""}
+})
+const [isLoading, setIsLoading] = useState(false)
 
-const LoginForm = () => {
     return(
         <div>
             <form onSubmit = {login}>
