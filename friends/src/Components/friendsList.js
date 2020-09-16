@@ -13,12 +13,13 @@ const FriendsList = (props) => {
                 console.log(res)
                 setFriendData(res.data)
             })
-            .catch(console.log('Error fetching friends'))
-    })
+            //.catch(console.log('Error fetching friends'))
+    },[])
 
     return (
         
         <div>
+            
             <NewFriendForm />
             {
                 friendData.map(someFriend => {

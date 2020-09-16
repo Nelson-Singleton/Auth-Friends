@@ -5,7 +5,15 @@ import {useHistory} from 'react-router-dom'
 
 const LoginForm = () => {
 
-    //functions
+    const history = useHistory()
+
+//states
+const [creds, setCreds] = useState({
+    credentials: {username: "", password: ""}
+})
+    
+
+//functions
 const handleChange = e => {
     setCreds({
         credentials:
@@ -16,24 +24,28 @@ const handleChange = e => {
 }
 
 const login = e => {
-    axiosWithAuth
+    e.preventDefault()
+    axiosWithAuth()
         .post('/api/login', creds.credentials)
         .then(res => {
-            localStorage.setItem('token', res.data.token) //.payload
-            useHistory.push('/protected')
+            
+            localStorage.setItem('token', res.data.payload) //.payload .token
+            
+            history.push('/protected')
+            
+        })
+        .catch(err => {
+            console.log(err.response.data.error)
         })
 }
 
-    //states
-const [creds, setCreds] = useState({
-    credentials: {username: "", password: ""}
-})
+
 const [isLoading, setIsLoading] = useState(false)
 
 
     return(
         <div>
-            <form onSubmit = {login}>
+            <form onSubmit = {() =>login}>
                 <input
                 type = 'text'
                 name = 'username'                
@@ -50,8 +62,9 @@ const [isLoading, setIsLoading] = useState(false)
                 onChange = {handleChange}
                 />
                 
+                <button>Submit</button>
             </form>
-            <button>Submit</button>
+            
         </div>
     )
 }

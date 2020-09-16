@@ -4,6 +4,7 @@ import axiosWithAuth from '../Utils/axiosWithAuth'
 const NewFriendForm = () => {
 
     const [newFriend, setNewFriend] = useState({
+        id: new Date(),
         name: '',
         age: '',
         email: '',
@@ -17,13 +18,14 @@ const NewFriendForm = () => {
     }
 
     const sendFriend = e => {
+        e.preventDefault()
         axiosWithAuth()
             .post('/api/friends', newFriend) //url + state
             
     }
     return(
         <div>
-            <form onSubmit = {sendFriend}>
+            <form>
                 <h1>New Friend</h1>
                 <input
                 type = 'text'
@@ -48,9 +50,10 @@ const NewFriendForm = () => {
                 placeholder = 'email'
                 onChange = {handleChange}
                 />
+                <button onClick = {sendFriend}>Submit</button>
                 
             </form>
-            <button>Submit</button>
+            
         </div>
     )
 }
