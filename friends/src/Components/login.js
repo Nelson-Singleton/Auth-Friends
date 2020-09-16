@@ -1,6 +1,7 @@
 import Axios from "axios"
 import React, { useState } from "react"
 import axiosWithAuth from '../Utils/axiosWithAuth'
+import {useHistory} from 'react-router-dom'
 
 const LoginForm = () => {
 
@@ -19,10 +20,10 @@ const login = e => {
         .post('/api/login', creds.credentials)
         .then(res => {
             localStorage.setItem('token', res.data.token) //.payload
-            //history.push('/protected')
+            useHistory.push('/protected')
         })
 }
-   
+
     //states
 const [creds, setCreds] = useState({
     credentials: {username: "", password: ""}
@@ -36,6 +37,7 @@ const [isLoading, setIsLoading] = useState(false)
                 type = 'text'
                 name = 'username'                
                 value = {creds.credentials.username}
+                placeholder = 'username'
                 onChange = {handleChange}
                 />
 
@@ -43,6 +45,7 @@ const [isLoading, setIsLoading] = useState(false)
                 type = 'text'
                 name = 'password'                
                 value = {creds.credentials.password}
+                placeholder = 'password'
                 onChange = {handleChange}
                 />
                 
