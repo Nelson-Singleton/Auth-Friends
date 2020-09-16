@@ -5,7 +5,7 @@ import {useHistory} from 'react-router-dom'
 
 const LoginForm = () => {
 
-    const history = useHistory()
+const history = useHistory()
 
 //states
 const [creds, setCreds] = useState({
@@ -29,10 +29,9 @@ const login = e => {
         .post('/api/login', creds.credentials)
         .then(res => {
             
-            localStorage.setItem('token', res.data.payload) //.payload .token
-            
-            history.push('/protected')
-            
+            localStorage.setItem('token', res.data.payload) 
+            console.log(res)            
+            history.push('/protected')            
         })
         .catch(err => {
             console.log(err.response.data.error)
@@ -53,18 +52,15 @@ const [isLoading, setIsLoading] = useState(false)
                 placeholder = 'username'
                 onChange = {handleChange}
                 />
-
                 <input
                 type = 'text'
                 name = 'password'                
                 value = {creds.credentials.password}
                 placeholder = 'password'
                 onChange = {handleChange}
-                />
-                
+                />                
                 <button>Submit</button>
-            </form>
-            
+            </form>            
         </div>
     )
 }
